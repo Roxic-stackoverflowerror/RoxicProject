@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.roxic.crm.workbench.dao.CustomerDao">
+    <select id="getTotalByCondition" resultType="Integer">
+        select count(c.id)
+
+        from tbl_customer c join tbl_user u on c.owner = u.id
+
+        <where>
+
+            <if test="name != null and name != ''">
+
+                c.name like '%' #{name} '%'
+
+            </if>
+
+
+            <if test="phone != null and phone != ''">
+
+                and c.phone like '%' #{phone} '%'
+
+            </if>
+
+            <if test="owner != null and owner != ''">
+
+                and u.name like '%' #{owner} '%'
+
+            </if>
+
+
+            <if test="website != null and website != ''">
+
+                and c.website = #{website}
+
+            </if>
+
+        </where>
+    </select>
+
+
+    <select id="getCustomerListByCondition" resultType="Customer">
+        select
+
+        c.id,
+        c.name,
+        c.website,
+        c.phone,
+        c.contactSummary,
+        c.nextContactTime,
+        c.description,
+        u.name as owner,
+        c.address
+
+        from tbl_customer c join tbl_user u on c.owner = u.id
+
+        <where>
+
+            <if test="name != null and name != ''">
+
+                c.name like '%' #{name} '%'
+
+            </if>
+
+
+            <if test="phone != null and phone != ''">
+
+                and c.phone like '%' #{phone} '%'
+
+            </if>
+
+            <if test="owner != null and owner != ''">
+
+                and u.name like '%' #{owner} '%'
+
+            </if>
+
+
+            <if test="website != null and website != ''">
+
+                and c.website = #{website}
+
+            </if>
+
+        </where>
+
+        order by c.createTime desc
+
+        limit #{skipCount},#{pageSize}
+    </select>
+
+    <select id="getCustomerByName"  resultType="Customer">
+        select * from tbl_customer where name=#{company}
+    </select>
+
+    <insert id="save">
+        insert into tbl_customer(
+
+            id,
+            owner,
+            name,
+            website,
+            phone,
+            createBy,
+            createTime,
+            contactSummary,
+            nextContactTime,
+            description,
+            address
+
+        )
+
+        values(
+
+            #{id},
+            #{owner},
+            #{name},
+            #{website},
+            #{phone},
+            #{createBy},
+            #{createTime},
+            #{contactSummary},
+            #{nextContactTime},
+            #{description},
+            #{address}
+
+        )
+    </insert>
+
+    <select id="getCustomerName" resultType="String">
+        select
+        name from tbl_customer where name like '%' #{name} "%"
+    </select>
+    
+    <update id="update">
+        update tbl_customer set
+           name=#{name},
+           owner=#{owner},
+           phone=#{phone},
+           website=#{website},
+           editBy=#{editBy},
+           editTime=#{editTime},
+           description=#{description},
+           contactSummary=#{contactSummary},
+           nextContactTime=#{nextContactTime},
+           address=#{address}
+
+           where id=#{id}
+    </update>
+    
+    <select id="getCustomerById" resultType="Customer">
+        select * from tbl_customer where id = #{id}
+    </select>
+
+    <delete id="delete">
+
+        delete from tbl_customer where id in
+
+        <foreach collection="array" item="cuid" open="(" close=")" separator=",">
+
+            #{cuid}
+
+        </foreach>
+
+    </delete>
+
+    <select id="detail" resultType="Customer">
+        select
+        u.name as owner,
+        cu.id,
+        cu.name,
+        cu.website,
+        cu.phone,
+        cu.contactSummary,
+        cu.description,
+        cu.createTime,
+        cu.createBy,
+        cu.editTime,
+        cu.editBy,
+        cu.nextContactTime,
+        cu.address
+
+        from tbl_customer cu
+        join tbl_user u
+        on cu.owner = u.id
+        where cu.id = #{id}
+    </select>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
