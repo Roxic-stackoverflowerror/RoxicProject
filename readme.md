@@ -21,5 +21,5 @@
 6. 交易统计
 通过漏斗图统计当前企业所有交易阶段的数量，快速了解企业当前所有交易的情况（交易成功，交易失败，交易商谈中），一目了然。
 
-以下为一些项目截图
-![image](https://github.com/Roxic-stackoverflowerror/RoxicProject/tree/master/crm/images/1.png)
+以下是项目截图的链接
+https://github.com/Roxic-stackoverflowerror/RoxicProject/tree/master/crm/images
