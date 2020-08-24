@@ -2,9 +2,10 @@
 #### 一、介绍
 该项目为贸易行业的客户关系管理系统（CRM），主要针对企业客户，单方面的对客户做出的一些管理。
 #### 二、后端
-后端基于java，servlet，mybatis，maven
+后端基于java，servlet，mybatis，maven，mysql数据库
 #### 三、前端
 前端基于bootstrap，JavaScript，Jsp，Html，CSS，Java脚本
+扩展插件：分页插件，日历插件
 #### 四、内容
 **项目主要分成六大模块：**
 1. 市场活动
@@ -19,3 +20,6 @@
 统一管理企业的交易情况以及交易记录。每一条交易都有若干个交易阶段（交易阶段可以通过数据字典自定义），可以随意点击变更，并且变更的同时也会产生相应的交易记录，保存整个交易的全过程。
 6. 交易统计
 通过漏斗图统计当前企业所有交易阶段的数量，快速了解企业当前所有交易的情况（交易成功，交易失败，交易商谈中），一目了然。
+
+以下为一些项目截图
+![image](https://github.com/Roxic-stackoverflowerror/RoxicProject/crm/images/1.png)
